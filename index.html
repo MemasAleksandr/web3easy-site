@@ -1,32 +1,100 @@
-    <section id="donate" class="donate-section">
-        <h2 class="reveal active">💰 Раунд фінансування / Grant Round</h2>
-        <p class="lang-ua reveal active">Натисніть на адресу, щоб скопіювати її та підтримати розробку:</p>
-        <p class="lang-en reveal active" style="display:none;">Click on the address to copy and support the development:</p>
-
-        <div class="crypto-grid reveal delay-1 active">
-            <!-- Bitcoin (BTC) -->
-            <div class="address-box" onclick="copyAddr('btc')">
-                <span class="label">BITCOIN (Network: BTC)</span>
-                <code id="btc">bc1qjdqe3mara65wqu5xydaqef8q62qkafh7t43x8x</code>
+    <!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3Easy | Crypto for Everyone</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        /* ВБУДОВАНИЙ ДИЗАЙН, ЩОБ ТОЧНО ПРАЦЮВАЛО */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #020617; color: white; overflow-x: hidden; }
+        .bg-animate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #020617 100%); z-index: -1; }
+        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; }
+        .logo span { color: #818cf8; }
+        .btn-lang { background: transparent; border: 1px solid #818cf8; color: #818cf8; cursor: pointer; border-radius: 5px; padding: 5px 12px; font-weight: bold; margin-right: 10px; }
+        .hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        h1 { font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
+        .purple { background: linear-gradient(90deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-primary { background: #6366f1; color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+        .btn-secondary { border: 2px solid rgba(255,255,255,0.2); color: white; padding: 16px 33px; text-decoration: none; border-radius: 12px; display: inline-block; margin: 10px; }
+        .features { display: flex; flex-wrap: wrap; gap: 20px; padding: 50px 10%; justify-content: center; }
+        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; width: 280px; text-align: center; }
+        .donate-section { padding: 80px 10%; text-align: center; background: rgba(0,0,0,0.3); }
+        .crypto-grid { max-width: 600px; margin: 30px auto; display: flex; flex-direction: column; gap: 12px; }
+        .address-box { background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(99, 102, 241, 0.3); transition: 0.3s; }
+        .address-box:hover { background: rgba(99, 102, 241, 0.2); border-color: #818cf8; transform: scale(1.02); }
+        code { font-family: monospace; color: #facc15; font-size: 0.9rem; word-break: break-all; }
+        .toast { display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 25px; border-radius: 10px; z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div class="bg-animate"></div>
+    <header>
+        <nav style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">Web3<span>Easy</span></div>
+            <div>
+                <button id="lang-switch" class="btn-lang">EN</button>
+                <a href="#donate" style="color:white; text-decoration:none; background:#6366f1; padding:10px 20px; border-radius:8px;" class="lang-ua">Підтримати</a>
+                <a href="#donate" style="color:white; text-decoration:none; background:#6366f1; padding:10px 20px; border-radius:8px; display:none;" class="lang-en">Support</a>
             </div>
+        </nav>
+    </header>
 
-            <!-- Solana (SOL) -->
-            <div class="address-box" onclick="copyAddr('sol')">
-                <span class="label">SOLANA (Network: SOL)</span>
-                <code id="sol">Bb8yRF5BxzjeufNLusdwiTMFVhSAbiKiJhfg1jfw23pm</code>
-            </div>
-
-            <!-- Tether USDT (ERC-20) -->
-            <div class="address-box" onclick="copyAddr('usdt')">
-                <span class="label">USDT (Network: ERC-20)</span>
-                <code id="usdt">0x4796953C5DC95d3464BCE10019839465eE29de92</code>
-            </div>
-
-            <!-- Ethereum (ETH) -->
-            <div class="address-box" onclick="copyAddr('eth')">
-                <span class="label">ETHEREUM (Network: ERC-20)</span>
-                <code id="eth">0x473A1eD579896dF023fAd0Ea8Bb2Ccae481e8f70</code>
+    <section class="hero">
+        <div>
+            <h1 class="lang-ua">Криптосвіт став <span class="purple">простішим</span></h1>
+            <h1 class="lang-en" style="display:none;">Crypto made <span class="purple">simple</span></h1>
+            <p class="lang-ua">Мобільний додаток для новачків. Вчися та заробляй без страху.</p>
+            <p class="lang-en" style="display:none;">Mobile app for newcomers. Learn and earn without fear.</p>
+            <div class="cta-group">
+                <a href="#donate" class="btn-primary lang-ua">Інвестувати</a>
+                <a href="#donate" class="btn-primary lang-en" style="display:none;">Invest Now</a>
+                <a href="#about" class="btn-secondary lang-ua">Детальніше</a>
+                <a href="#about" class="btn-secondary lang-en" style="display:none;">Learn More</a>
             </div>
         </div>
-        <div id="copy-msg" class="toast">✅ Copied! / Скопійовано!</div>
     </section>
+
+    <section id="about" class="features">
+        <div class="card"><h3>🚀 One-Tap</h3><p class="lang-ua">Вхід через Google</p><p class="lang-en" style="display:none;">Google Login</p></div>
+        <div class="card"><h3>🛡️ Secure</h3><p class="lang-ua">Анти-фільтр скаму</p><p class="lang-en" style="display:none;">Anti-scam filter</p></div>
+    </section>
+
+    <section id="donate" class="donate-section">
+        <h2 class="lang-ua">💰 Раунд фінансування</h2>
+        <h2 class="lang-en" style="display:none;">💰 Funding Round</h2>
+        <div class="crypto-grid">
+            <div class="address-box" onclick="copyAddr('btc')">
+                <code id="btc">bc1qjdqe3mara65wqu5xydaqef8q62qkafh7t43x8x</code>
+            </div>
+            <div class="address-box" onclick="copyAddr('sol')">
+                <code id="sol">Bb8yRF5BxzjeufNLusdwiTMFVhSAbiKiJhfg1jfw23pm</code>
+            </div>
+            <div class="address-box" onclick="copyAddr('usdt')">
+                <code id="usdt">0x4796953C5DC95d3464BCE10019839465eE29de92</code>
+            </div>
+        </div>
+        <div id="copy-msg" class="toast">Copied! / Скопійовано!</div>
+    </section>
+
+    <script>
+        const langBtn = document.getElementById('lang-switch');
+        const uaTexts = document.querySelectorAll('.lang-ua');
+        const enTexts = document.querySelectorAll('.lang-en');
+        langBtn.addEventListener('click', () => {
+            const isUA = langBtn.innerText === 'EN';
+            langBtn.innerText = isUA ? 'UA' : 'EN';
+            uaTexts.forEach(t => t.style.display = isUA ? 'none' : 'block');
+            enTexts.forEach(t => t.style.display = isUA ? 'block' : 'none');
+        });
+        function copyAddr(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            document.getElementById('copy-msg').style.display = 'block';
+            setTimeout(() => document.getElementById('copy-msg').style.display = 'none', 2000);
+        }
+    </script>
+</body>
+</html>
