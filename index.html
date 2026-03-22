@@ -3,161 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Easy | Universe of Crypto</title>
+    <title>Web3Easy | Neon Universe</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background: #020617; color: white; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #000; color: white; overflow-x: hidden; }
         
-        /* КАРТИНКА КОСМОСУ ТА ГАЛАКТИК */
-        #particles-js {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com');
+        /* АНІМОВАНИЙ НЕОНОВИЙ ФОН */
+        #bg-image {
+            position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
+            background-image: url('https://raw.githubusercontent.com'); /* Посилання на твоє фото */
             background-size: cover;
             background-position: center;
+            z-index: -2;
+            filter: brightness(0.4) contrast(1.2); /* Робимо темнішим для читабельності */
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Ефект пульсації кольору поверх фото */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
             z-index: -1;
         }
 
-        /* ТЕМНИЙ ФІЛЬТР ДЛЯ ЧИТАБЕЛЬНОСТІ */
-        #particles-js::after {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.7); 
-            z-index: -1;
-        }
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .logo span { color: #00ffcc; text-shadow: 0 0 20px #00ffcc; }
+        
+        .btn-lang { background: transparent; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; margin-right: 12px; }
+        
+        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 900; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .neon-text { color: #00ffcc; text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
 
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(2, 6, 23, 0.6); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -1px; }
-        .logo span { color: #818cf8; text-shadow: 0 0 15px rgba(129, 140, 248, 0.5); }
-        .btn-lang { background: transparent; border: 1px solid #818cf8; color: #818cf8; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; margin-right: 12px; }
-        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; position: relative; }
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 900; }
-        .purple { background: linear-gradient(90deg, #818cf8, #c084fc, #818cf8); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
-        @keyframes shine { to { background-position: 200% center; } }
-        .btn-primary { background: #6366f1; color: white; padding: 18px 38px; text-decoration: none; border-radius: 14px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); transition: 0.3s; border: none; cursor: pointer; }
-        .btn-secondary { border: 2px solid rgba(255,255,255,0.2); color: white; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; backdrop-filter: blur(5px); }
-        .btn-primary:hover, .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(99, 102, 241, 0.7); }
+        .btn-primary { background: #00ffcc; color: #000; padding: 18px 38px; text-decoration: none; border-radius: 14px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); transition: 0.3s; border: none; }
+        .btn-secondary { border: 2px solid #00ffcc; color: #00ffcc; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; backdrop-filter: blur(5px); }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px #00ffcc; }
+
         .features { display: flex; flex-wrap: wrap; gap: 25px; padding: 60px 10%; justify-content: center; }
-        .card { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 24px; width: 280px; text-align: center; transition: 0.4s; }
-        .card:hover { background: rgba(255,255,255,0.07); transform: scale(1.05); border-color: #818cf8; }
-        .card i { font-size: 3rem; color: #818cf8; margin-bottom: 15px; display: block; }
-        .donate-section { padding: 100px 10%; text-align: center; position: relative; }
+        .card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(0, 255, 204, 0.2); padding: 35px; border-radius: 24px; width: 280px; text-align: center; transition: 0.3s; }
+        .card:hover { border-color: #00ffcc; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2); }
+        .card i { font-size: 3rem; color: #00ffcc; margin-bottom: 15px; display: block; }
+
+        .donate-section { padding: 100px 10%; text-align: center; }
         .crypto-grid { max-width: 650px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; }
-        .address-box { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(99, 102, 241, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
-        .address-box:hover { border-color: #818cf8; background: rgba(99, 102, 241, 0.1); transform: translateX(10px); }
-        .address-box i { font-size: 2rem; min-width: 40px; text-align: center; }
-        .fa-bitcoin { color: #f7931a; }
-        .fa-ethereum { color: #627eea; }
-        .fa-bolt { color: #14f195; }
-        .fa-circle-dollar-to-slot { color: #26a17b; }
-        code { font-family: 'Courier New', monospace; color: #facc15; font-size: 1rem; word-break: break-all; margin-top: 5px; display: block; }
-        .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 0 30px rgba(16, 185, 129, 0.5); }
-        footer { padding: 50px; text-align: center; opacity: 0.4; font-size: 0.9rem; letter-spacing: 1px; }
+        .address-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(0, 255, 204, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
+        .address-box:hover { border-color: #00ffcc; background: rgba(0, 255, 204, 0.1); transform: translateX(10px); }
+        
+        code { font-family: monospace; color: #facc15; font-size: 1rem; word-break: break-all; margin-top: 5px; display: block; }
+        .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #00ffcc; color: #000; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 0 20px #00ffcc; }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
+    <!-- ФОНОВЕ ЗОБРАЖЕННЯ -->
+    <div id="bg-image"></div>
+    <div class="overlay"></div>
 
     <header>
         <nav style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <a href="#" class="logo">Web3<span>Easy</span></a>
             <div>
                 <button id="lang-switch" class="btn-lang">EN</button>
-                <a href="#donate" class="btn-primary lang-ua" style="padding: 10px 20px; font-size: 0.9rem;">Підтримати</a>
-                <a href="#donate" class="btn-primary lang-en" style="padding: 10px 20px; font-size: 0.9rem; display:none;">Support</a>
+                <a href="#donate" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Donate</a>
             </div>
         </nav>
     </header>
 
     <section class="hero">
         <div>
-            <h1 class="lang-ua">Відкрий свій <br><span class="purple">Космос Web3</span></h1>
-            <h1 class="lang-en" style="display:none;">Discover Your <br><span class="purple">Web3 Space</span></h1>
-            <p class="lang-ua" style="font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Твій квиток у світ децентралізації. Безпечно, просто, для кожного.</p>
-            <p class="lang-en" style="display:none; font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Your ticket to the decentralized world. Safe, simple, for everyone.</p>
+            <h1>Future of <br><span class="neon-text">Web3 Assets</span></h1>
+            <p style="font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Простий шлях у світ децентралізованих фінансів. Твій успіх починається тут.</p>
             <div class="cta-group">
-                <a href="#donate" class="btn-primary lang-ua">Стати Спонсором</a>
-                <a href="#donate" class="btn-primary lang-en" style="display:none;">Become a Sponsor</a>
-                <a href="#about" class="btn-secondary lang-ua">Вивчити Більше</a>
-                <a href="#about" class="btn-secondary lang-en" style="display:none;">Learn More</a>
+                <a href="#donate" class="btn-primary">Підтримати проєкт</a>
+                <a href="#about" class="btn-secondary">Більше про нас</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="features">
-        <div class="card"><i class="fas fa-rocket"></i><h3>Launch</h3><p class="lang-ua">Швидкий старт без зусиль</p><p class="lang-en" style="display:none;">Effortless fast start</p></div>
-        <div class="card"><i class="fas fa-user-shield"></i><h3>Privacy</h3><p class="lang-ua">Твої дані належать тобі</p><p class="lang-en" style="display:none;">Your data belongs to you</p></div>
-        <div class="card"><i class="fas fa-star"></i><h3>Future</h3><p class="lang-ua">Будуй майбутнє з нами</p><p class="lang-en" style="display:none;">Build the future with us</p></div>
-    </section>
-
     <section id="donate" class="donate-section">
-        <h2 class="lang-ua">💳 Підтримати Експедицію</h2>
-        <h2 class="lang-en" style="display:none;">💳 Support the Expedition</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">💰 Гаманці для донатів</h2>
         <div class="crypto-grid">
             <div class="address-box" onclick="copyAddr('btc')">
-                <i class="fab fa-bitcoin"></i>
+                <i class="fab fa-bitcoin" style="color: #f7931a; font-size: 2rem;"></i>
                 <div class="addr-info">
                     <span style="font-size: 0.7rem; opacity: 0.6;">BITCOIN</span>
                     <code id="btc">bc1qjdqe3mara65wqu5xydaqef8q62qkafh7t43x8x</code>
                 </div>
             </div>
             <div class="address-box" onclick="copyAddr('sol')">
-                <i class="fas fa-bolt"></i>
+                <i class="fas fa-bolt" style="color: #14f195; font-size: 2rem;"></i>
                 <div class="addr-info">
                     <span style="font-size: 0.7rem; opacity: 0.6;">SOLANA</span>
                     <code id="sol">Bb8yRF5BxzjeufNLusdwiTMFVhSAbiKiJhfg1jfw23pm</code>
                 </div>
             </div>
             <div class="address-box" onclick="copyAddr('usdt')">
-                <i class="fas fa-circle-dollar-to-slot"></i>
+                <i class="fas fa-dollar-sign" style="color: #26a17b; font-size: 2rem;"></i>
                 <div class="addr-info">
                     <span style="font-size: 0.7rem; opacity: 0.6;">USDT (ERC-20)</span>
                     <code id="usdt">0x4796953C5DC95d3464BCE10019839465eE29de92</code>
                 </div>
             </div>
-            <div class="address-box" onclick="copyAddr('eth')">
-                <i class="fab fa-ethereum"></i>
-                <div class="addr-info">
-                    <span style="font-size: 0.7rem; opacity: 0.6;">ETHEREUM</span>
-                    <code id="eth">0x473A1eD579896dF023fAd0Ea8Bb2Ccae481e8f70</code>
-                </div>
-            </div>
         </div>
-        <div id="copy-msg" class="toast">🚀 Copied! / Скопійовано!</div>
+        <div id="copy-msg" class="toast">🚀 Скопійовано!</div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Web3Easy Space Division. To the Moon & Beyond.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net"></script>
     <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true },
-                "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#818cf8", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 0.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }
-            },
-            "retina_detect": true
-        });
-
-        const langBtn = document.getElementById('lang-switch');
-        const uaTexts = document.querySelectorAll('.lang-ua');
-        const enTexts = document.querySelectorAll('.lang-en');
-        langBtn.addEventListener('click', () => {
-            const isUA = langBtn.innerText === 'EN';
-            langBtn.innerText = isUA ? 'UA' : 'EN';
-            uaTexts.forEach(t => t.style.display = isUA ? 'none' : 'block');
-            enTexts.forEach(t => t.style.display = isUA ? 'block' : 'none');
+        // АНІМАЦІЯ РУХУ ФОНУ ЗА МИШКОЮ
+        const bg = document.getElementById('bg-image');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            bg.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
         });
 
         function copyAddr(id) {
