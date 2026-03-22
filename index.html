@@ -1,0 +1,32 @@
+    <section id="donate" class="donate-section">
+        <h2 class="reveal active">💰 Раунд фінансування / Grant Round</h2>
+        <p class="lang-ua reveal active">Натисніть на адресу, щоб скопіювати її та підтримати розробку:</p>
+        <p class="lang-en reveal active" style="display:none;">Click on the address to copy and support the development:</p>
+
+        <div class="crypto-grid reveal delay-1 active">
+            <!-- Bitcoin (BTC) -->
+            <div class="address-box" onclick="copyAddr('btc')">
+                <span class="label">BITCOIN (Network: BTC)</span>
+                <code id="btc">bc1qjdqe3mara65wqu5xydaqef8q62qkafh7t43x8x</code>
+            </div>
+
+            <!-- Solana (SOL) -->
+            <div class="address-box" onclick="copyAddr('sol')">
+                <span class="label">SOLANA (Network: SOL)</span>
+                <code id="sol">Bb8yRF5BxzjeufNLusdwiTMFVhSAbiKiJhfg1jfw23pm</code>
+            </div>
+
+            <!-- Tether USDT (ERC-20) -->
+            <div class="address-box" onclick="copyAddr('usdt')">
+                <span class="label">USDT (Network: ERC-20)</span>
+                <code id="usdt">0x4796953C5DC95d3464BCE10019839465eE29de92</code>
+            </div>
+
+            <!-- Ethereum (ETH) -->
+            <div class="address-box" onclick="copyAddr('eth')">
+                <span class="label">ETHEREUM (Network: ERC-20)</span>
+                <code id="eth">0x473A1eD579896dF023fAd0Ea8Bb2Ccae481e8f70</code>
+            </div>
+        </div>
+        <div id="copy-msg" class="toast">✅ Copied! / Скопійовано!</div>
+    </section>
