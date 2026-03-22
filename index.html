@@ -3,122 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Easy | Crypto for Everyone</title>
+    <title>Web3Easy | Universe of Crypto</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
-    <!-- Підключення іконок FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
+        /* КОСМІЧНИЙ ДИНАМІЧНИЙ ФОН */
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; margin: 0; background: #020617; color: white; overflow-x: hidden; }
-        .bg-animate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #020617 100%); z-index: -1; }
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
-        .logo span { color: #818cf8; }
-        .btn-lang { background: transparent; border: 1px solid #818cf8; color: #818cf8; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; margin-right: 12px; transition: 0.3s; }
-        .btn-lang:hover { background: #818cf8; color: white; }
-        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
-        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
-        .purple { background: linear-gradient(90deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-primary { background: #6366f1; color: white; padding: 18px 38px; text-decoration: none; border-radius: 14px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4); transition: 0.3s; }
-        .btn-secondary { border: 2px solid rgba(255,255,255,0.2); color: white; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; }
-        .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
+        
+        #particles-js {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1e1b4b 0%, #020617 100%);
+            z-index: -1;
+        }
+
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(2, 6, 23, 0.7); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .logo span { color: #818cf8; text-shadow: 0 0 15px rgba(129, 140, 248, 0.5); }
+        
+        .btn-lang { background: transparent; border: 1px solid #818cf8; color: #818cf8; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; margin-right: 12px; }
+        
+        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; position: relative; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 900; }
+        .purple { background: linear-gradient(90deg, #818cf8, #c084fc, #818cf8); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
+        
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .btn-primary { background: #6366f1; color: white; padding: 18px 38px; text-decoration: none; border-radius: 14px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); transition: 0.3s; border: none; cursor: pointer; }
+        .btn-secondary { border: 2px solid rgba(255,255,255,0.2); color: white; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; backdrop-filter: blur(5px); }
+        .btn-primary:hover, .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(99, 102, 241, 0.7); }
+
         .features { display: flex; flex-wrap: wrap; gap: 25px; padding: 60px 10%; justify-content: center; }
-        .card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 24px; width: 280px; text-align: center; transition: 0.3s; }
-        .card i { font-size: 2.5rem; color: #818cf8; margin-bottom: 15px; }
-        .donate-section { padding: 100px 10%; text-align: center; background: rgba(0,0,0,0.4); }
+        .card { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 24px; width: 280px; text-align: center; transition: 0.4s; }
+        .card:hover { background: rgba(255,255,255,0.07); transform: scale(1.05); border-color: #818cf8; }
+        .card i { font-size: 3rem; color: #818cf8; margin-bottom: 15px; display: block; }
+
+        .donate-section { padding: 100px 10%; text-align: center; position: relative; }
         .crypto-grid { max-width: 650px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; }
-        .address-box { background: rgba(99, 102, 241, 0.08); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(99, 102, 241, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
-        .address-box i { font-size: 1.8rem; min-width: 35px; text-align: center; }
+        .address-box { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(99, 102, 241, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
+        .address-box:hover { border-color: #818cf8; background: rgba(99, 102, 241, 0.1); transform: translateX(10px); }
+        .address-box i { font-size: 2rem; min-width: 40px; text-align: center; }
         .fa-bitcoin { color: #f7931a; }
         .fa-ethereum { color: #627eea; }
-        .fa-bolt { color: #14f195; } /* Solana */
-        .fa-t { color: #26a17b; } /* USDT */
-        .address-box:hover { background: rgba(99, 102, 241, 0.18); border-color: #818cf8; transform: scale(1.02); }
-        .addr-info { display: flex; flex-direction: column; }
-        .addr-label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
-        code { font-family: 'Courier New', monospace; color: #facc15; font-size: 0.95rem; word-break: break-all; margin-top: 4px; }
-        .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
+        .fa-bolt { color: #14f195; }
+        .fa-circle-dollar-to-slot { color: #26a17b; }
+        
+        code { font-family: 'Courier New', monospace; color: #facc15; font-size: 1rem; word-break: break-all; margin-top: 5px; display: block; }
+        .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 0 30px rgba(16, 185, 129, 0.5); }
+        footer { padding: 50px; text-align: center; opacity: 0.4; font-size: 0.9rem; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-    <div class="bg-animate"></div>
+    <!-- КОНТЕЙНЕР ДЛЯ ЧАСТИНОК -->
+    <div id="particles-js"></div>
+
     <header>
         <nav style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <a href="#" class="logo">Web3<span>Easy</span></a>
             <div>
                 <button id="lang-switch" class="btn-lang">EN</button>
-                <a href="#donate" style="color:white; text-decoration:none; background:#6366f1; padding:12px 24px; border-radius:10px; font-weight:bold;" class="lang-ua">Підтримати</a>
-                <a href="#donate" style="color:white; text-decoration:none; background:#6366f1; padding:12px 24px; border-radius:10px; font-weight:bold; display:none;" class="lang-en">Donate</a>
+                <a href="#donate" class="btn-primary lang-ua" style="padding: 10px 20px; font-size: 0.9rem;">Підтримати</a>
+                <a href="#donate" class="btn-primary lang-en" style="padding: 10px 20px; font-size: 0.9rem; display:none;">Support</a>
             </div>
         </nav>
     </header>
 
     <section class="hero">
         <div>
-            <h1 class="lang-ua">Криптосвіт став <br><span class="purple">простішим</span></h1>
-            <h1 class="lang-en" style="display:none;">Crypto made <br><span class="purple">simple</span></h1>
-            <p class="lang-ua" style="font-size: 1.2rem; color: #cbd5e1; max-width: 600px; margin: 0 auto 30px;">Мобільний додаток для новачків. Вчися, зберігай та заробляй без зайвих складнощів.</p>
-            <p class="lang-en" style="display:none; font-size: 1.2rem; color: #cbd5e1; max-width: 600px; margin: 0 auto 30px;">Mobile app for newcomers. Learn, store and earn without the complexity.</p>
+            <h1 class="lang-ua">Відкрий свій <br><span class="purple">Космос Web3</span></h1>
+            <h1 class="lang-en" style="display:none;">Discover Your <br><span class="purple">Web3 Space</span></h1>
+            <p class="lang-ua" style="font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Твій квиток у світ децентралізації. Безпечно, просто, для кожного.</p>
+            <p class="lang-en" style="display:none; font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Your ticket to the decentralized world. Safe, simple, for everyone.</p>
             <div class="cta-group">
-                <a href="#donate" class="btn-primary lang-ua">Інвестувати</a>
-                <a href="#donate" class="btn-primary lang-en" style="display:none;">Invest Now</a>
-                <a href="#about" class="btn-secondary lang-ua">Про проєкт</a>
-                <a href="#about" class="btn-secondary lang-en" style="display:none;">About Us</a>
+                <a href="#donate" class="btn-primary lang-ua">Стати Спонсором</a>
+                <a href="#donate" class="btn-primary lang-en" style="display:none;">Become a Sponsor</a>
+                <a href="#about" class="btn-secondary lang-ua">Вивчити Більше</a>
+                <a href="#about" class="btn-secondary lang-en" style="display:none;">Learn More</a>
             </div>
         </div>
     </section>
 
     <section id="about" class="features">
-        <div class="card"><i class="fas fa-shield-halved"></i><h3>🛡️ Secure</h3><p class="lang-ua">Вхід через FaceID/TouchID</p><p class="lang-en" style="display:none;">FaceID/TouchID Access</p></div>
-        <div class="card"><i class="fas fa-graduation-cap"></i><h3>🎓 Learn</h3><p class="lang-ua">Отримуй бонуси за навчання</p><p class="lang-en" style="display:none;">Earn rewards for learning</p></div>
-        <div class="card"><i class="fas fa-bolt"></i><h3>⚡ Speed</h3><p class="lang-ua">Миттєві перекази без коду</p><p class="lang-en" style="display:none;">Instant transfers</p></div>
+        <div class="card"><i class="fas fa-rocket"></i><h3>Launch</h3><p class="lang-ua">Швидкий старт без зусиль</p><p class="lang-en" style="display:none;">Effortless fast start</p></div>
+        <div class="card"><i class="fas fa-user-shield"></i><h3>Privacy</h3><p class="lang-ua">Твої дані належать тобі</p><p class="lang-en" style="display:none;">Your data belongs to you</p></div>
+        <div class="card"><i class="fas fa-star"></i><h3>Future</h3><p class="lang-ua">Будуй майбутнє з нами</p><p class="lang-en" style="display:none;">Build the future with us</p></div>
     </section>
 
     <section id="donate" class="donate-section">
-        <h2 class="lang-ua" style="font-size: 2.5rem; margin-bottom: 10px;">💰 Підтримка розробки</h2>
-        <h2 class="lang-en" style="display:none; font-size: 2.5rem; margin-bottom: 10px;">💰 Support Development</h2>
-        <p class="lang-ua" style="color: #94a3b8; margin-bottom: 40px;">Натисніть на картку, щоб скопіювати адресу гаманця</p>
-        <p class="lang-en" style="display:none; color: #94a3b8; margin-bottom: 40px;">Click on the card to copy the wallet address</p>
-        
+        <h2 class="lang-ua">💳 Підтримати Експедицію</h2>
+        <h2 class="lang-en" style="display:none;">💳 Support the Expedition</h2>
         <div class="crypto-grid">
             <div class="address-box" onclick="copyAddr('btc')">
                 <i class="fab fa-bitcoin"></i>
                 <div class="addr-info">
-                    <span class="addr-label">Bitcoin (BTC)</span>
+                    <span style="font-size: 0.7rem; opacity: 0.6;">BITCOIN</span>
                     <code id="btc">bc1qjdqe3mara65wqu5xydaqef8q62qkafh7t43x8x</code>
                 </div>
             </div>
             <div class="address-box" onclick="copyAddr('sol')">
                 <i class="fas fa-bolt"></i>
                 <div class="addr-info">
-                    <span class="addr-label">Solana (SOL)</span>
+                    <span style="font-size: 0.7rem; opacity: 0.6;">SOLANA</span>
                     <code id="sol">Bb8yRF5BxzjeufNLusdwiTMFVhSAbiKiJhfg1jfw23pm</code>
                 </div>
             </div>
             <div class="address-box" onclick="copyAddr('usdt')">
-                <i class="fas fa-t"></i>
+                <i class="fas fa-circle-dollar-to-slot"></i>
                 <div class="addr-info">
-                    <span class="addr-label">USDT (ERC-20)</span>
+                    <span style="font-size: 0.7rem; opacity: 0.6;">USDT (ERC-20)</span>
                     <code id="usdt">0x4796953C5DC95d3464BCE10019839465eE29de92</code>
                 </div>
             </div>
             <div class="address-box" onclick="copyAddr('eth')">
                 <i class="fab fa-ethereum"></i>
                 <div class="addr-info">
-                    <span class="addr-label">Ethereum (ETH)</span>
+                    <span style="font-size: 0.7rem; opacity: 0.6;">ETHEREUM</span>
                     <code id="eth">0x473A1eD579896dF023fAd0Ea8Bb2Ccae481e8f70</code>
                 </div>
             </div>
         </div>
-        <div id="copy-msg" class="toast">✅ Copied! / Скопійовано!</div>
+        <div id="copy-msg" class="toast">🚀 Copied! / Скопійовано!</div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Web3Easy Project. Built for the next billion users.</p>
+        <p>&copy; 2024 Web3Easy Space Division. To the Moon & Beyond.</p>
     </footer>
 
+    <!-- СКРИПТ ДЛЯ ЧАСТИНОК -->
+    <script src="https://cdn.jsdelivr.net"></script>
     <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#818cf8", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }
+            },
+            "retina_detect": true
+        });
+
         const langBtn = document.getElementById('lang-switch');
         const uaTexts = document.querySelectorAll('.lang-ua');
         const enTexts = document.querySelectorAll('.lang-en');
@@ -128,12 +158,13 @@
             uaTexts.forEach(t => t.style.display = isUA ? 'none' : 'block');
             enTexts.forEach(t => t.style.display = isUA ? 'block' : 'none');
         });
+
         function copyAddr(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text);
             const msg = document.getElementById('copy-msg');
             msg.style.display = 'block';
-            setTimeout(() => msg.style.display = 'none', 2500);
+            setTimeout(() => msg.style.display = 'none', 2000);
         }
     </script>
 </body>
