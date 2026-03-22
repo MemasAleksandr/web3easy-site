@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Easy | Neon Universe</title>
+    <title>Web3Easy | Future of DeFi</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; margin: 0; background: #000; color: white; overflow-x: hidden; }
         
-        /* АНІМОВАНИЙ НЕОНОВИЙ ФОН */
         #bg-image {
             position: fixed; top: -5%; left: -5%; width: 110%; height: 110%;
-            background-image: url('bg.jpg'); /* Вона має лежати в репозиторії */
+            background-image: url('bg.jpg');
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -31,9 +30,10 @@
         .logo { font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
         .logo span { color: #00ffcc; text-shadow: 0 0 15px #00ffcc; }
         
-        .btn-lang { background: transparent; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; margin-right: 12px; }
+        .btn-lang { background: transparent; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; transition: 0.3s; }
+        .btn-lang:hover { background: #00ffcc; color: #000; }
         
-        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        .hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 900; }
         .neon-text { color: #00ffcc; text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
 
@@ -41,18 +41,22 @@
         .btn-secondary { border: 2px solid #00ffcc; color: #00ffcc; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; backdrop-filter: blur(5px); }
         .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 35px #00ffcc; }
 
-        .features { display: flex; flex-wrap: wrap; gap: 25px; padding: 60px 10%; justify-content: center; }
-        .card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 204, 0.3); padding: 35px; border-radius: 24px; width: 280px; text-align: center; transition: 0.3s; }
-        .card i { font-size: 3rem; color: #00ffcc; margin-bottom: 15px; display: block; }
+        .section-title { font-size: 2.5rem; text-align: center; margin: 50px 0 30px; }
+        .features { display: flex; flex-wrap: wrap; gap: 25px; padding: 20px 10% 60px; justify-content: center; }
+        .card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 204, 0.3); padding: 30px; border-radius: 24px; width: 320px; text-align: center; transition: 0.3s; }
+        .card i { font-size: 3rem; color: #00ffcc; margin-bottom: 20px; display: block; }
+        .card p { font-size: 0.95rem; color: #cbd5e1; line-height: 1.5; }
 
-        .donate-section { padding: 80px 10%; text-align: center; }
+        .about-text { max-width: 800px; margin: 0 auto 50px; text-align: center; font-size: 1.1rem; line-height: 1.8; color: #94a3b8; padding: 0 10%; }
+
+        .donate-section { padding: 60px 10% 100px; text-align: center; }
         .crypto-grid { max-width: 650px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; }
         .address-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(0, 255, 204, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
         .address-box:hover { border-color: #00ffcc; transform: translateX(10px); background: rgba(0, 255, 204, 0.05); }
         
         code { font-family: monospace; color: #facc15; font-size: 0.95rem; word-break: break-all; margin-top: 5px; display: block; }
         .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #00ffcc; color: #000; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; }
-        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -64,31 +68,58 @@
             <a href="#" class="logo">Web3<span>Easy</span></a>
             <div>
                 <button id="lang-switch" class="btn-lang">EN</button>
-                <a href="#donate" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;" class="lang-ua">Підтримати</a>
             </div>
         </nav>
     </header>
 
     <section class="hero">
         <div>
-            <h1 class="lang-ua">Майбутнє <br><span class="neon-text">Web3 Активів</span></h1>
-            <h1 class="lang-en" style="display:none;">Future of <br><span class="neon-text">Web3 Assets</span></h1>
-            <p class="lang-ua" style="font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Простий шлях у світ децентралізованих фінансів. Твій успіх починається тут.</p>
-            <p class="lang-en" style="display:none; font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Simple way to DeFi world. Your success starts here.</p>
+            <h1 class="lang-ua">Світ Web3 <br><span class="neon-text">Для Кожного</span></h1>
+            <h1 class="lang-en" style="display:none;">Web3 World <br><span class="neon-text">For Everyone</span></h1>
+            <p class="lang-ua" style="font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Простий квиток у світ децентралізації. Безпечно, прозоро, доступно.</p>
+            <p class="lang-en" style="display:none; font-size: 1.3rem; opacity: 0.8; max-width: 650px; margin: 0 auto 30px;">Simple ticket to the decentralized world. Safe, transparent, accessible.</p>
             <div class="cta-group">
-                <a href="#donate" class="btn-primary lang-ua">Донатити</a>
-                <a href="#about" class="btn-secondary lang-ua">Про нас</a>
+                <a href="#donate" class="btn-primary lang-ua">Підтримати</a>
+                <a href="#donate" class="btn-primary lang-en" style="display:none;">Support</a>
+                <a href="#about" class="btn-secondary lang-ua">Про проєкт</a>
+                <a href="#about" class="btn-secondary lang-en" style="display:none;">About</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="features">
-        <div class="card"><i class="fas fa-bolt"></i><h3>Fast</h3><p>Швидкі транзакції</p></div>
-        <div class="card"><i class="fas fa-shield-alt"></i><h3>Secure</h3><p>Надійний захист</p></div>
+    <h2 id="about" class="section-title lang-ua">Про проєкт</h2>
+    <h2 id="about-en" class="section-title lang-en" style="display:none;">About Project</h2>
+    
+    <div class="about-text lang-ua">
+        Web3Easy — це інноваційний мобільний додаток, розроблений для того, щоб стерти бар'єри між звичайними користувачами та складним світом блокчейну. Наша місія — зробити криптоактиви такими ж зрозумілими, як звичайний банківський додаток, зберігаючи при цьому повну децентралізацію та безпеку.
+    </div>
+    <div class="about-text lang-en" style="display:none;">
+        Web3Easy is an innovative mobile application designed to eliminate the barriers between regular users and the complex world of blockchain. Our mission is to make crypto assets as understandable as a regular banking app, while maintaining full decentralization and security.
+    </div>
+
+    <section class="features">
+        <div class="card">
+            <i class="fas fa-bolt"></i>
+            <h3 class="lang-ua">Швидкість</h3>
+            <h3 class="lang-en" style="display:none;">Fast</h3>
+            <p class="lang-ua">Миттєві транзакції та зручний інтерфейс. Ми оптимізували кожен крок, щоб ви могли керувати активами за лічені секунди.</p>
+            <p class="lang-en" style="display:none;">Instant transactions and an intuitive interface. We've optimized every step so you can manage your assets in seconds.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-shield-alt"></i>
+            <h3 class="lang-ua">Безпека</h3>
+            <h3 class="lang-en" style="display:none;">Secure</h3>
+            <p class="lang-ua">Ваші приватні ключі ніколи не покидають ваш пристрій. Ми використовуємо передові методи шифрування та FaceID захист.</p>
+            <p class="lang-en" style="display:none;">Your private keys never leave your device. We use advanced encryption methods and FaceID protection for every action.</p>
+        </div>
     </section>
 
     <section id="donate" class="donate-section">
-        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">💰 Support Us</h2>
+        <h2 class="lang-ua" style="font-size: 2.5rem; margin-bottom: 20px;">💰 Підтримка розробки</h2>
+        <h2 class="lang-en" style="display:none; font-size: 2.5rem; margin-bottom: 20px;">💰 Support Development</h2>
+        <p class="lang-ua">Донати допомагають нам швидше запустити бета-версію додатка.</p>
+        <p class="lang-en" style="display:none;">Donations help us launch the app beta version faster.</p>
+        
         <div class="crypto-grid">
             <div class="address-box" onclick="copyAddr('btc')">
                 <i class="fab fa-bitcoin" style="color: #f7931a; font-size: 2rem;"></i>
@@ -112,15 +143,19 @@
                 </div>
             </div>
         </div>
-        <div id="copy-msg" class="toast">🚀 Скопійовано!</div>
+        <div id="copy-msg" class="toast">🚀 Copied! / Скопійовано!</div>
     </section>
+
+    <footer>
+        <p>&copy; 2024 Web3Easy Project. Built for the next billion users.</p>
+    </footer>
 
     <script>
         // ЛОГІКА РУХУ ФОНУ
         const bg = document.getElementById('bg-image');
         document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 40;
-            const y = (window.innerHeight / 2 - e.pageY) / 40;
+            const x = (window.innerWidth / 2 - e.pageX) / 45;
+            const y = (window.innerHeight / 2 - e.pageY) / 45;
             bg.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
         });
 
@@ -128,6 +163,7 @@
         const langBtn = document.getElementById('lang-switch');
         const uaTexts = document.querySelectorAll('.lang-ua');
         const enTexts = document.querySelectorAll('.lang-en');
+        
         langBtn.addEventListener('click', () => {
             const isUA = langBtn.innerText === 'EN';
             langBtn.innerText = isUA ? 'UA' : 'EN';
