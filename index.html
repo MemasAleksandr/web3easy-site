@@ -30,29 +30,42 @@
         .logo { font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
         .logo span { color: #00ffcc; text-shadow: 0 0 15px #00ffcc; }
         
-        .btn-lang { background: transparent; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer; border-radius: 8px; padding: 6px 14px; font-weight: bold; transition: 0.3s; }
-        .btn-lang:hover { background: #00ffcc; color: #000; }
-        
+        /* СТИЛЬ КНОПКИ ПЕРЕМИКАННЯ МОВ */
+        .btn-lang { 
+            background: rgba(0, 255, 204, 0.1); 
+            border: 1px solid #00ffcc; 
+            color: #00ffcc; 
+            cursor: pointer; 
+            border-radius: 12px; 
+            padding: 8px 16px; 
+            font-weight: bold; 
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .btn-lang:hover { background: rgba(0, 255, 204, 0.2); transform: scale(1.05); }
+        .btn-lang img { width: 20px; height: 15px; border-radius: 2px; }
+
         .hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 900; }
         .neon-text { color: #00ffcc; text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
 
         .btn-primary { background: #00ffcc; color: #000; padding: 18px 38px; text-decoration: none; border-radius: 14px; font-weight: bold; display: inline-block; margin: 10px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); transition: 0.3s; border: none; cursor: pointer; }
         .btn-secondary { border: 2px solid #00ffcc; color: #00ffcc; padding: 16px 36px; text-decoration: none; border-radius: 14px; display: inline-block; margin: 10px; transition: 0.3s; backdrop-filter: blur(5px); }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 35px #00ffcc; }
-
+        
         .section-title { font-size: 2.5rem; text-align: center; margin: 50px 0 30px; }
         .features { display: flex; flex-wrap: wrap; gap: 25px; padding: 20px 10% 60px; justify-content: center; }
         .card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 204, 0.3); padding: 30px; border-radius: 24px; width: 320px; text-align: center; transition: 0.3s; }
         .card i { font-size: 3rem; color: #00ffcc; margin-bottom: 20px; display: block; }
-        .card p { font-size: 0.95rem; color: #cbd5e1; line-height: 1.5; }
 
         .about-text { max-width: 800px; margin: 0 auto 50px; text-align: center; font-size: 1.1rem; line-height: 1.8; color: #94a3b8; padding: 0 10%; }
 
         .donate-section { padding: 60px 10% 100px; text-align: center; }
         .crypto-grid { max-width: 650px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; }
         .address-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); padding: 22px; border-radius: 16px; cursor: pointer; border: 1px solid rgba(0, 255, 204, 0.2); transition: 0.3s; display: flex; align-items: center; gap: 15px; text-align: left; }
-        .address-box:hover { border-color: #00ffcc; transform: translateX(10px); background: rgba(0, 255, 204, 0.05); }
+        .address-box:hover { border-color: #00ffcc; transform: translateX(10px); }
         
         code { font-family: monospace; color: #facc15; font-size: 0.95rem; word-break: break-all; margin-top: 5px; display: block; }
         .toast { display: none; position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #00ffcc; color: #000; padding: 15px 30px; border-radius: 12px; z-index: 1000; font-weight: bold; }
@@ -67,7 +80,10 @@
         <nav style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <a href="#" class="logo">Web3<span>Easy</span></a>
             <div>
-                <button id="lang-switch" class="btn-lang">EN</button>
+                <!-- КНОПКА З ПРАПОРОМ -->
+                <button id="lang-switch" class="btn-lang">
+                    <span id="lang-flag">🇺🇦</span> <span id="lang-name">UA</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -87,17 +103,17 @@
         </div>
     </section>
 
-    <h2 id="about" class="section-title lang-ua">Про проєкт</h2>
-    <h2 id="about-en" class="section-title lang-en" style="display:none;">About Project</h2>
+    <h2 class="section-title lang-ua">Про проєкт</h2>
+    <h2 class="section-title lang-en" style="display:none;">About Project</h2>
     
     <div class="about-text lang-ua">
-        Web3Easy — це інноваційний мобільний додаток, розроблений для того, щоб стерти бар'єри між звичайними користувачами та складним світом блокчейну. Наша місія — зробити криптоактиви такими ж зрозумілими, як звичайний банківський додаток, зберігаючи при цьому повну децентралізацію та безпеку.
+        Web3Easy — це інноваційний мобільний додаток, розроблений для того, щоб стерти бар'єри між звичайними користувачами та складним світом блокчейну. Наша місія — зробити криптоактиви такими ж зрозумілими, як звичайний банківський додаток.
     </div>
     <div class="about-text lang-en" style="display:none;">
-        Web3Easy is an innovative mobile application designed to eliminate the barriers between regular users and the complex world of blockchain. Our mission is to make crypto assets as understandable as a regular banking app, while maintaining full decentralization and security.
+        Web3Easy is an innovative mobile application designed to eliminate the barriers between regular users and the complex world of blockchain. Our mission is to make crypto assets as understandable as a regular banking app.
     </div>
 
-    <section class="features">
+    <section id="about" class="features">
         <div class="card">
             <i class="fas fa-bolt"></i>
             <h3 class="lang-ua">Швидкість</h3>
@@ -117,8 +133,6 @@
     <section id="donate" class="donate-section">
         <h2 class="lang-ua" style="font-size: 2.5rem; margin-bottom: 20px;">💰 Підтримка розробки</h2>
         <h2 class="lang-en" style="display:none; font-size: 2.5rem; margin-bottom: 20px;">💰 Support Development</h2>
-        <p class="lang-ua">Донати допомагають нам швидше запустити бета-версію додатка.</p>
-        <p class="lang-en" style="display:none;">Donations help us launch the app beta version faster.</p>
         
         <div class="crypto-grid">
             <div class="address-box" onclick="copyAddr('btc')">
@@ -143,15 +157,10 @@
                 </div>
             </div>
         </div>
-        <div id="copy-msg" class="toast">🚀 Copied! / Скопійовано!</div>
+        <div id="copy-msg" class="toast">🚀 Скопійовано! / Copied!</div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Web3Easy Project. Built for the next billion users.</p>
-    </footer>
-
     <script>
-        // ЛОГІКА РУХУ ФОНУ
         const bg = document.getElementById('bg-image');
         document.addEventListener('mousemove', (e) => {
             const x = (window.innerWidth / 2 - e.pageX) / 45;
@@ -159,16 +168,27 @@
             bg.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
         });
 
-        // ПЕРЕМИКАЧ МОВ
+        // ЛОГІКА ПЕРЕМИКАННЯ МОВ
         const langBtn = document.getElementById('lang-switch');
+        const langFlag = document.getElementById('lang-flag');
+        const langName = document.getElementById('lang-name');
         const uaTexts = document.querySelectorAll('.lang-ua');
         const enTexts = document.querySelectorAll('.lang-en');
         
         langBtn.addEventListener('click', () => {
-            const isUA = langBtn.innerText === 'EN';
-            langBtn.innerText = isUA ? 'UA' : 'EN';
-            uaTexts.forEach(t => t.style.display = isUA ? 'none' : 'block');
-            enTexts.forEach(t => t.style.display = isUA ? 'block' : 'none');
+            if (langName.innerText === 'UA') {
+                // Перемикаємо на EN
+                langName.innerText = 'EN';
+                langFlag.innerText = '🇺🇸';
+                uaTexts.forEach(t => t.style.display = 'none');
+                enTexts.forEach(t => t.style.display = 'block');
+            } else {
+                // Перемикаємо на UA
+                langName.innerText = 'UA';
+                langFlag.innerText = '🇺🇦';
+                uaTexts.forEach(t => t.style.display = 'block');
+                enTexts.forEach(t => t.style.display = 'none');
+            }
         });
 
         function copyAddr(id) {
